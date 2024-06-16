@@ -73,4 +73,3 @@ class UserCourse(models.Model):
     def __str__(self):
         return self.user.username + " - " + self.course.title
 
-
