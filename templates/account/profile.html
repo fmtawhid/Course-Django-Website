@@ -34,14 +34,14 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group mb-4">
-                        <label>First Name</label>
-                        <input type="text" class="form-control"  placeholder="Enter First Name" name="first_name" value='{{user.first_name}}'>
+                        <label>Full Name</label>
+                        <input type="text" class="form-control"  placeholder="Enter Full Name" name="name" value='{{user.name}}'>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group mb-4">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Enter Last Name" name="last_name" value='{{user.last_name}}'>
+                        <label>Profession</label>
+                        <input type="text" class="form-control" placeholder="Enter Profession" name="profession" value='{{user.passion}}'>
                     </div>
                 </div>
                 <div class="w-100"></div>
@@ -57,12 +57,33 @@
                         <input type="text" class="form-control" placeholder="Enter Username" name="username" value='{{user.username}}'>
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="w-100"></div>
+                <div class="col">
                     <div class="form-group mb-4">
-                        <label>Password</label>
-                        <input type="password" class="form-control" placeholder="Fill Only If You Want To Change Password" name="password">
+                        <label>Bio</label>
+                        <input type="text" class="form-control" placeholder="Enter your Bio" name="bio" value='{{user.bio}}'>
                     </div>
                 </div>
+                <div class="col">
+                    <div class="form-group mb-4">
+                        <label>Number</label>
+                        <input type="text" class="form-control" placeholder="Enter your Number" name="number" value='{{user.mobile_number}}'>
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                    <div class="form-group mb-4">
+                        <label>Profile Picture</label>
+                        <input type="file" class="form-control" name="profile" value='{{user.profile_picture}}'>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mb-4">
+                        <label>Password</label>
+                        <input type="text" class="form-control" placeholder="Enter your Number" name="pass" value='{{user.password}}'>
+                    </div>
+                </div>
+                
             </div>
             <button type="submit" class="btn btn-primary">Update Profile </button>
         </form>

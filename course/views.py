@@ -63,14 +63,3 @@ def topic(request, id):
     }
     return render(request, 'course.html', context)
 
-def ChackOut_Function(request, slug):
-    course = Course.objects.get(slug=slug)
-    if course.price == 0:
-        user_course = UserCourse(
-            user=request.user,
-            course=course,
-        )
-        user_course.save()
-        return redirect('mainProfile', id=request.user.id)  # Pass the user ID here
-
-    return render(request, 'checkout.html')

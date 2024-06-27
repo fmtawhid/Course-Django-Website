@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+AUTH_USER_MODEL = 'account.CustomUser'
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'shop',
     'account',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 

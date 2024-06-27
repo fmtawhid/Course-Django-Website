@@ -5,5 +5,4 @@ urlpatterns = [
     path('', course_page, name='course'),
     path('csp/<str:slug>', course_single_page, name='csp'),
     path('topic/<str:id>', topic, name='topic'),
-    path('checkout/<slug:slug>', ChackOut_Function, name='checkout'),
 ]

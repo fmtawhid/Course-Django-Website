@@ -4,6 +4,12 @@ from django.contrib import messages
 from course.models import *
 
 
+from django.contrib.auth import get_user_model
+
+User = get_user_model
+
+from .models import CustomUser as User
+
 from django.contrib.auth import authenticate,login,logout
 from .EmailBackEnd import EmailBackEnd
 # Create your views here.
@@ -33,7 +39,7 @@ def register_page(request):                                                 #Reg
         if User.objects.filter(email=email).exists():                       #chack email in database
             messages.warning(request, 'Email Alrady exists')
             return redirect('register')
-        
+   
         if User.objects.filter(username=username).exists():
             messages.warning(request, 'Username Alrady exists')
             return redirect('register')
@@ -60,17 +66,24 @@ def Profile(request):
 def Profile_Update(request):
     if request.method == "POST":
         username = request.POST.get('username')
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
+        name = request.POST.get('name')
+        profession = request.POST.get('profession')
         email = request.POST.get('email')
+        bio = request.POST.get('bio')
+        profile_picture = request.POST.get('profile')
+        number = request.POST.get('number')
+
         password = request.POST.get('password')
         user_id = request.user.id
 
         user = User.objects.get(id=user_id)
-        user.first_name = first_name
-        user.last_name = last_name
+        user.name = name
+        user.passion = profession
         user.username = username
         user.email = email
+        user.bio = bio
+        user.profile_picture = profile_picture
+        user.mobile_number = number
 
         if password != None and password != "":
             user.set_password(password)
@@ -81,9 +94,11 @@ def Profile_Update(request):
 def mainProfile(request, id):
     user = get_object_or_404(User, pk=id)
     courses = UserCourse.objects.filter(user = request.user)
+    enroled_count= courses.count()
     CONTEXT = {
         'user':user,
         'courses':courses,
+        'enroled_count':enroled_count,
     }
     return render(request, 'account/main_profile.html', CONTEXT)
     

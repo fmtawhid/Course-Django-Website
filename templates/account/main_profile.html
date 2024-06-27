@@ -9,12 +9,13 @@
     <div class="d-flex align-items-center mb-6">
         <div class="d-inline-block rounded-circle border me-6 p-2">
             <div class="avatar avatar-size-120">
-                <img src="{{ author.author_profile.url }}" alt="..." class="avatar-img rounded-circle">
+                <img src="{{ user.profile_picture.url }}" alt="..." class="avatar-img rounded-circle">
             </div>
         </div>
         <div class="media-body">
-            <h4 class="mb-0">{{ user.username }} {{ user.last_name }}</h4>
-            <span>Web Developer</span>
+            <h4 class="mb-0">{{ user.name }} </h4>
+            <span><b>{{ user.passion }}</b></span><br>
+            <span>{{ user.bio }}</span>
         </div>
     </div>
 
@@ -66,7 +67,7 @@
                     </svg>
 
                 </div>
-                29 courses
+                {{enroled_count}} Courses Enroled
             </div>
         </div>
     </div>

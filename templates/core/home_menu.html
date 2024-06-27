@@ -94,7 +94,7 @@
                             <!-- Email -->
                             <div class="form-group mb-5">
                                 <label for="modalSignupEmail">
-                                    Username or Email
+                                    Phone Number
                                 </label>
                                 <input type="email" class="form-control" id="modalSignupEmail" placeholder="johndoe@creativelayers.com" name='email'>
                             </div>
@@ -519,17 +519,22 @@
 
                         </a>
                     </li>
-                    {% if request.user.is_authenticated %}
+                    {% if user.is_authenticated %}
                         
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle px-xl-4" id="navbarPages" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
-                                Welcome {{ User.username }}
+                                Welcome {{ user.username }}
                             </a>
                             
                             <ul class="dropdown-menu border-xl shadow-none" aria-labelledby="navbarBlog">
                                 
                                 <li class="dropdown-item">
                                     <a class="dropdown-link" href="{% url 'profile' %}">
+                                        Profile Edit
+                                    </a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="dropdown-link" href="{% url 'mainProfile' id=user.id%}">
                                         Profile
                                     </a>
                                 </li>
