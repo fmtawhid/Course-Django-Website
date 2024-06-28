@@ -1,9 +1,23 @@
-from django.shortcuts import redirect, render
-from course.models import * # Create your views here.
+from django.shortcuts import redirect, render, get_object_or_404
+from course.models import * 
+from .models import*
+
+
+# Create your views here.
 def shop_page(request):
-    return render(request, 'shop.html')
-def product_page(request):
-    return render(request, 'product.html')
+    book = BookModel.objects.all()
+    book_count = book.count()
+    Context = {
+        'book':book,
+        'book_count':book_count,
+    }
+    return render(request, 'shop.html', Context)
+def product_page(request, id):
+    book = get_object_or_404(BookModel, id=id)
+    Context = {
+        'book':book,
+    }
+    return render(request, 'product.html', Context)
 
 def ChackOut_Function(request, slug):
     course = Course.objects.get(slug=slug)
