@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from . models import *
 from django.db.models import Q 
 from django.db.models import Sum
+from django.core.paginator import Paginator
 
 # Create your views here.
 def course_page(request):
@@ -20,12 +21,16 @@ def course_page(request):
             Q(title__icontains=search)
             
         )
-    
+    #Blog post pageanation Logic
+    paginator = Paginator(course, 3)
+    page_number = request.GET.get('page')
+    paginat_course = paginator.get_page(page_number)
+
     #time_duration = Video.objects.filter(course__slug = slug).aaggregate(sum = Sum('time_duration'))
 
 
     Context = {
-        'course':course,
+        'course':paginat_course,
         'course_cat':course_cat,
         'course_count':course_count,
         'search':search,
@@ -38,10 +43,17 @@ def course_single_page(request, slug):
     course_cat = Categories.objects.all()
 
     course_id = Course.objects.get(slug = slug)
+    
+    
+
+    if not request.user.is_authenticated:
+        return redirect('login')  # Redirect to your login view
     try:
-        enrolled_course = UserCourse.objects.get(user=request.user, course = course_id)
+        enrolled_course = UserCourse.objects.get(user=request.user, course=course_id)
+        # Your logic here
     except UserCourse.DoesNotExist:
-        enrolled_course=None
+        # Handle the case where the user is not enrolled in the course
+        pass
     #courses = Course.objects.filter(slug=slug)
 
     course.final_price =course.price - course.price * course.discount / 100
