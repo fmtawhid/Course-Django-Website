@@ -40,7 +40,7 @@
                     
                     <ul class="dropdown-menu border-xl shadow-none" aria-labelledby="navbarBlog">
                         {% for course_cat in course_cat %}
-                        <li class="dropdown-item">
+                        <li class="dropdown-item" style="display: block; cursor: pointer;">
                             <a class="dropdown-link" href="{% url 'topic' course_cat.id %}">
                                 {{ course_cat.name }}
                             </a>
@@ -193,11 +193,6 @@
                 <a class="page-link" href="?page={{ course.next_page_number }}" aria-label="Next">
                     <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
                 </a>
-                <!--
-                <a class="page-link" href="?page={{ blogging.paginator.num_pages }}" aria-label="Next">
-                    <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
-                </a>
-                -->
                 
             </li>
         {% endif %}

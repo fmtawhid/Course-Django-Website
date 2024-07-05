@@ -69,11 +69,13 @@ def course_single_page(request, slug):
 # Catagory Function
 
 def topic(request, id):
-    category_cat = get_object_or_404(Categories, id = id)
-    course = Course.objects.filter(catagory= category_cat.id)
-    
+    category_cat = get_object_or_404(Categories, id=id)
+    course = Course.objects.filter(category=category_cat.id)
+    course_cat = Categories.objects.all()
+    course_count = course.count()
     context = {
-        'course':course
+        'course': course,
+        'course_cat': course_cat,
+        'course_count':course_count
     }
-    return render(request, 'course.html', context)
-
+    return render(request, 'course_cat.html', context)
