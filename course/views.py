@@ -22,7 +22,7 @@ def course_page(request):
             
         )
     #Blog post pageanation Logic
-    paginator = Paginator(course, 3)
+    paginator = Paginator(course, 4)
     page_number = request.GET.get('page')
     paginat_course = paginator.get_page(page_number)
 
@@ -39,30 +39,32 @@ def course_page(request):
 
     return render(request, 'course.html', Context)
 def course_single_page(request, slug):
+
     course = get_object_or_404(Course, slug=slug)
     course_cat = Categories.objects.all()
-
-    course_id = Course.objects.get(slug = slug)
+    course_id = Course.objects.get(slug=slug)
     
-    
+    # Initialize enrolled_course
+    enrolled_course = None
 
-    if not request.user.is_authenticated:
-        return redirect('login')  # Redirect to your login view
-    try:
-        enrolled_course = UserCourse.objects.get(user=request.user, course=course_id)
-        # Your logic here
-    except UserCourse.DoesNotExist:
-        # Handle the case where the user is not enrolled in the course
-        pass
-    #courses = Course.objects.filter(slug=slug)
+    if request.user.is_authenticated:
+        try:
+            enrolled_course = UserCourse.objects.get(user=request.user, course=course_id)
+            # Your logic here
+        except UserCourse.DoesNotExist:
+            # Handle the case where the user is not enrolled in the course
+            enrolled_course = None
 
-    course.final_price =course.price - course.price * course.discount / 100
-    Context = {
-        'course':course,
-        'course_cat':course_cat,
-        'enrolled_course':enrolled_course
+    course.final_price = course.price - course.price * course.discount / 100
+
+    context = {
+        'course': course,
+        'course_cat': course_cat,
+        'enrolled_course': enrolled_course,
     }
-    return render(request, 'course-single.html', Context)
+    
+    return render(request, 'course-single.html', context)
+
 
 # Catagory Function
 

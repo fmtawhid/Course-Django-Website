@@ -492,10 +492,14 @@
                             <span class="ms-2">2 days left at this price!</span>
                         </div>
                         -->
+                        {% if user.is_authenticated %}
                         {% if enrolled_course is None %}<!--{% url 'checkout' slug=course.slug %} enroll <a> tag -->
                         <a href="{% url 'checkout' slug=course.slug %}" class="btn btn-primary btn-block mb-3" type="button" name="button">Enroll Now</a>
                         {% else %}
                         <button class="btn btn-orange btn-block mb-6" type="button" name="button" >Alrady Enrolled</button>
+                        {% endif %}
+                        {% else %}
+                        <button class="btn btn-orange btn-block mb-6" type="button" name="button" >Login</button>
                         {% endif %}
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex align-items-center py-3">
