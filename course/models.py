@@ -76,3 +76,15 @@ class UserCourse(models.Model):
     def __str__(self):
         return self.user.username + " - " + self.course.title
 
+class what_you_learn(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    point = models.CharField(max_length=100)
+    def __str__(self):
+        return self.point
+    
+class requirment(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    point = models.CharField(max_length=100)
+    def __str__(self):
+        return self.point
+
