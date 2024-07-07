@@ -37,7 +37,7 @@ def course_page(request):
     }
 
 
-    return render(request, 'course.html', Context)
+    return render(request, 'product/course.html', Context)
 def course_single_page(request, slug):
 
     course = get_object_or_404(Course, slug=slug)
@@ -63,7 +63,7 @@ def course_single_page(request, slug):
         'enrolled_course': enrolled_course,
     }
     
-    return render(request, 'course-single.html', context)
+    return render(request, 'product/course-single.html', context)
 
 
 # Catagory Function
@@ -78,4 +78,4 @@ def topic(request, id):
         'course_cat': course_cat,
         'course_count':course_count
     }
-    return render(request, 'course_cat.html', context)
+    return render(request, 'product/course_cat.html', context)

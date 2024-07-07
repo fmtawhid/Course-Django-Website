@@ -11,13 +11,13 @@ def shop_page(request):
         'book':book,
         'book_count':book_count,
     }
-    return render(request, 'shop.html', Context)
+    return render(request, 'product/book.html', Context)
 def product_page(request, id):
     book = get_object_or_404(BookModel, id=id)
     Context = {
         'book':book,
     }
-    return render(request, 'product.html', Context)
+    return render(request, 'product/single-book.html', Context)
 
 def ChackOut_Function(request, slug):
     course = Course.objects.get(slug=slug)
