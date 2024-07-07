@@ -23,7 +23,7 @@ def login_page(request):                                                    #Log
 
         if user!=None:
            login(request,user)
-           return redirect('home')
+           return redirect('/')
         else:
            messages.error(request,'Email and Password Are Invalid !')
            return redirect('login')
