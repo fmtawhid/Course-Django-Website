@@ -78,5 +78,4 @@ def topic(request, id):
     }
     return render(request, 'product/course_cat.html', context)
 
-def shop_completed(request):
-    return render(request, 'shop-order-completed.html')
+

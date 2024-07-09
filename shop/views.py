@@ -36,3 +36,6 @@ def ChackOut_Function(request, slug):
         'total':total,
     }
     return render(request, 'checkout.html', context)
+
+def shop_completed(request):
+    return render(request, 'shop-order-completed.html')
