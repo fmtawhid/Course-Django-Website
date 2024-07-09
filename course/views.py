@@ -77,3 +77,6 @@ def topic(request, id):
         'course_count':course_count
     }
     return render(request, 'product/course_cat.html', context)
+
+def shop_completed(request):
+    return render(request, 'shop-order-completed.html')

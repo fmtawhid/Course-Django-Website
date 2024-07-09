@@ -21,3 +21,9 @@ def about_page(request):
 
 def contact_page(request):
     return render(request, 'contact.html')
+
+def faq_page(request):
+    return render(request, 'faq.html')
+
+def terms_condition(request):
+    return render(request, 'terms-of-service.html')
