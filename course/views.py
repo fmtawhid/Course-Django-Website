@@ -7,10 +7,10 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def course_page(request):
-    course_cat = Categories.objects.all().order_by('id')[0:5]
-    course = Course.objects.filter(status = 'PUBLISH').order_by('-id')
+    course_cat = Categories.objects.all().order_by('id')[0:5]                       #Course Category Filtering
+    course = Course.objects.filter(status = 'PUBLISH').order_by('-id')              #Course Filtering by id
 
-    for x in course:
+    for x in course:                                                                #course final price calculate
         x.final_price =x.price - x.price * x.discount / 100
     course_count = course.count()
 
@@ -21,7 +21,7 @@ def course_page(request):
             Q(title__icontains=search)
             
         )
-    #Blog post pageanation Logic
+    # pageanation Logic
     paginator = Paginator(course, 4)
     page_number = request.GET.get('page')
     paginat_course = paginator.get_page(page_number)
@@ -44,15 +44,14 @@ def course_single_page(request, slug):
     course_cat = Categories.objects.all()
     course_id = Course.objects.get(slug=slug)
     
-    # Initialize enrolled_course
+    # enrolled course function
     enrolled_course = None
 
     if request.user.is_authenticated:
         try:
             enrolled_course = UserCourse.objects.get(user=request.user, course=course_id)
-            # Your logic here
+
         except UserCourse.DoesNotExist:
-            # Handle the case where the user is not enrolled in the course
             enrolled_course = None
 
     course.final_price = course.price - course.price * course.discount / 100
@@ -66,11 +65,10 @@ def course_single_page(request, slug):
     return render(request, 'product/course-single.html', context)
 
 
-# Catagory Function
-
+                                                                                # Catagory Function
 def topic(request, id):
-    category_cat = get_object_or_404(Categories, id=id)
-    course = Course.objects.filter(category=category_cat.id)
+    category_cat = get_object_or_404(Categories, id=id)                         #Category single page function
+    course = Course.objects.filter(category=category_cat.id)                    #Course filter by category
     course_cat = Categories.objects.all()
     course_count = course.count()
     context = {

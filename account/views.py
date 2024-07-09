@@ -4,11 +4,9 @@ from django.contrib import messages
 from course.models import *
 
 
-from django.contrib.auth import get_user_model
-
+from django.contrib.auth import get_user_model                      
 User = get_user_model
-
-from .models import CustomUser as User
+from .models import CustomUser as User                                  #Convert Default user to custom user
 
 from django.contrib.auth import authenticate,login,logout
 from .EmailBackEnd import EmailBackEnd
@@ -55,7 +53,7 @@ def register_page(request):                                                 #Reg
     return render(request, 'account/register.html')
 
 
-def getLogout(request):
+def getLogout(request):                                                     #Logut Function
     logout(request)
     return redirect('home')
 
@@ -63,7 +61,7 @@ def Profile(request):
 
     return render(request, 'account/profile.html')
 
-def Profile_Update(request):
+def Profile_Update(request):                                                #Profile Update Function
     if request.method == "POST":
         username = request.POST.get('username')
         name = request.POST.get('name')
@@ -91,7 +89,7 @@ def Profile_Update(request):
         messages.success(request,'Profile Are Successfully Updated. ')
         return redirect('profile')
 
-def mainProfile(request, id):
+def mainProfile(request, id):                                                  #Profile View Function
     user = get_object_or_404(User, pk=id)
     courses = UserCourse.objects.filter(user = request.user)
     enroled_count= courses.count()

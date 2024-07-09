@@ -6,8 +6,6 @@ def home_page(request):
     course = Course.objects.filter(status = 'PUBLISH').order_by('-id')
     author = Author.objects.all()
 
-
-
     for x in course:
         x.final_price =x.price - x.price * x.discount / 100
         

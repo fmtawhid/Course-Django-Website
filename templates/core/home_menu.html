@@ -297,7 +297,13 @@
                                 Contact Us
                             </a>
                         </li>
-        
+
+                        <li class="nav-item ">
+                            <a class="nav-link px-xl-4" id="navbarBlog" href="{% url 'about' %}" aria-haspopup="true" aria-expanded="false">
+                                About Us
+                            </a>
+                        </li>
+                        
                     </ul>
                 </div>
 
@@ -356,7 +362,7 @@
                         </a>
                     </li>
 -->
-                    {% if user.is_authenticated %}
+                    {% if user.is_authenticated %} 
                         
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle px-xl-4" id="navbarPages" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
