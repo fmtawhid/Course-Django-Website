@@ -100,3 +100,5 @@ def mainProfile(request, id):                                                  #
     }
     return render(request, 'account/main_profile.html', CONTEXT)
     
+def recover(request):
+    return render(request, 'recover.html')
